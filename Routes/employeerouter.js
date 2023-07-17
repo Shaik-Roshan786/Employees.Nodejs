@@ -30,12 +30,12 @@ router.get('/employees', async (req,res) =>{
     } 
     })
 
-    router.put('/updatedata/:Firstname',(req,res)=>{
-        const empname = req.params.Firstname; 
-        const {Firstname,Lastname,Company,mobile,Email,Location} = req.body;
+    router.put('/updatedata/:Name',(req,res)=>{
+        const empname = req.params.Name; 
+        const {Name,Company,Mobile,Email,Salary,Projectname} = req.body;
         Employee.findOneAndUpdate(
-            {Firstname : empname},
-            {Firstname,Lastname,Company,mobile,Email,Location},
+            {Name : empname},
+            {Name,Company,Mobile,Email,Salary,Projectname},
             {new : true}
         )
         .then((employee)=>{
@@ -47,9 +47,9 @@ router.get('/employees', async (req,res) =>{
     
     })
 
-    router.delete('/deletedata/:Firstname', (req, res) => { // Defined Path and Handler Function
-        const empname = req.params.Firstname; // Passing Parameters to variable 
-        Employee.findOneAndDelete({ Firstname: empname }) // findOneAndDelete helps to Delete
+    router.delete('/deletedata/:Name', (req, res) => { // Defined Path and Handler Function
+        const empname = req.params.Name; // Passing Parameters to variable 
+        Employee.findOneAndDelete({ Name: empname }) // findOneAndDelete helps to Delete
             .then((employee) => { // asynchronous function 
                 if (!employee) {
                     return res.status(404).json({ error : "Employee Data Not Found"});
